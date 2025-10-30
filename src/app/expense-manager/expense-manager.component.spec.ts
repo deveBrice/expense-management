@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpenseManager } from './expense-manager';
+import { ExpenseManager } from './expense-manager.component';
 
 describe('ExpenseManager', () => {
   let component: ExpenseManager;

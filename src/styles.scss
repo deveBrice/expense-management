@@ -40,3 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-drawer {
   min-width: 50px !important;
 }
+
+.refund-manager-table {
+  td, th.mat-mdc-header-cell {
+    text-align: center !important;
+  }
+}
