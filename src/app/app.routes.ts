@@ -8,14 +8,14 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        loadComponent: () => import('./dashboard/dashboard').then(m => m.Dashboard)
+        loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent)
     },
     {
         path: 'refundManager',
-        loadComponent: () => import('./refund-manager/refund-manager').then(m => m.RefundManager)
+        loadComponent: () => import('./refund-manager/refund-manager.component').then(m => m.RefundManagerComponent)
     },
     {
         path: 'expenseManager',
-        loadComponent: () => import('./expense-manager/expense-manager').then(m => m.ExpenseManager)
+        loadComponent: () => import('./expense-manager/expense-manager.component').then(m => m.ExpenseManagerComponent)
     },
 ];
