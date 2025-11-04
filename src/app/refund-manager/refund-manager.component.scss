@@ -2,4 +2,21 @@
     display: flex;
     justify-content: flex-end;
     text-align: right;
+    p{
+        font-size: 20px
+    }
+}
+
+.refund-update {
+    button {
+        margin-left: 10px;
+    }
+}
+
+.total-refund {
+    display: flex;
+    align-items: center;
+    button {
+        margin-left: 10px;
+    }
 }

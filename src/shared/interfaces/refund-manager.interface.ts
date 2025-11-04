@@ -1,12 +1,12 @@
 export interface RefundManager {
+    month: string;
+    year: number;
     totalAmount: number;
     refundManagerData: refundManagerData[]
 }
 
 export interface refundManagerData {
-   month: string;
-   year: number;
-   refundData: RefundData;
+    refundData: RefundData;
 }
 
 export interface RefundData {
