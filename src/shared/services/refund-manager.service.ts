@@ -63,6 +63,13 @@ export class RefundManagerService {
                     amount: 4.00,
                     date: '30/10/2025'
                 }
+            },
+            {
+                refundData: {
+                    wording: 'Uber Eats',
+                    amount: 4.00,
+                    date: '30/10/2025'
+                }
             }
         ]
     })
@@ -71,12 +78,16 @@ export class RefundManagerService {
     }
 
     public getRefundList() {
-        let refundManagerList = this.refundManagerList();
+        let refundManagerList = this.refundManagerList()
         if (refundManagerList.totalAmount === 0 && refundManagerList.refundManagerData.length !== 0) {
             return this.refundCalculate(refundManagerList);
         } else {
-            return refundManagerList
+            return refundManagerList 
         }
+    }
+
+    public test() {
+        return this.refundManagerList()
     }
 
     public refundCalculate(refundManagerList: RefundManager) {
@@ -89,13 +100,13 @@ export class RefundManagerService {
             initialValue
         );
 
-        return refundManagerList
+        return refundManagerList;
     }
 
     public currentMonth() {
         let month = (this.date.getMonth() + 1).toString().padStart(2, "0")
         return this.monthsList[+month - 1]
-    } 
+    }
 
     public addNewRefund(refund: refundManagerData) {
         this.refundManagerList().refundManagerData.push(refund);
@@ -104,6 +115,14 @@ export class RefundManagerService {
 
     public refundUpdate(newRefund: number) {
         this.refundManagerList().totalAmount = newRefund;
+    }
+
+    public dateFormat(newdate: Date) {
+        const date = new Date(newdate);
+        const day = date.getDate().toString().padStart(2, "0")
+        const month = (date.getMonth() + 1).toString().padStart(2, "0")
+        const year = date.getFullYear()
+        return day + '/' + month + '/' + year;
     }
 
 }

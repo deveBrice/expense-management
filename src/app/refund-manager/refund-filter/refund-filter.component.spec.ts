@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RefundManagerComponent } from './refund-manager.component';
+import { RefundFilter } from './refund-filter.component';
 
-describe('RefundManager', () => {
-  let component: RefundManagerComponent;
-  let fixture: ComponentFixture<RefundManagerComponent>;
+describe('RefundFilter', () => {
+  let component: RefundFilter;
+  let fixture: ComponentFixture<RefundFilter>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RefundManagerComponent]
+      imports: [RefundFilter]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RefundManagerComponent);
+    fixture = TestBed.createComponent(RefundFilter);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
