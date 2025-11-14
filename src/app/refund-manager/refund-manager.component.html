@@ -1,3 +1,5 @@
+{{ filtredRefundList() | json }}
+<app-refund-filter (refundFiltersList)="refundFiltersList($event)"/>
 <app-new-refund (newRefund)="newRefund($event)" />
 
 <div class="refund-amount">
@@ -14,14 +16,14 @@
   </div>
   } @else {
   <div class="total-refund">
-    <p>{{ refundList().totalAmount }}€</p>
+    <p>{{ filtredRefundList().totalAmount }}€</p>
     <button matMiniFab (click)="refundEdit()">
       <mat-icon>edit</mat-icon>
     </button>
   </div>
   }
 </div>
-<table mat-table [dataSource]="refundList().refundManagerData" class="mat-elevation-z8 refund-manager-table">
+<table mat-table [dataSource]="filtredRefundList().refundManagerData" class="mat-elevation-z8 refund-manager-table">
 
   <ng-container matColumnDef="num">
     <th mat-header-cell *matHeaderCellDef> Numéros </th>

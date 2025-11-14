@@ -22,8 +22,6 @@ import { RefundData, RefundManager, refundManagerData } from '../../../shared/in
 export class NewRefundComponent {
   
   public newRefund = output<refundManagerData>();
-  public month = signal<number>(0)
-
   public fb = inject(FormBuilder);
 
   public newRefundForm = this.fb.group({
@@ -44,7 +42,6 @@ export class NewRefundComponent {
     const day = date.getDate().toString().padStart(2, "0")
     const month = (date.getMonth() + 1).toString().padStart(2, "0")
     const year = date.getFullYear()
-    this.month.set(+month)
     return  day + '/' + month + '/' + year;
   }
   
