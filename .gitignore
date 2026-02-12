@@ -43,4 +43,4 @@ __screenshots__/
 Thumbs.db
 
 # shared
-src/shared/common/constant.common.ts
+src/shared/common/constants.common.ts
