@@ -9,5 +9,5 @@ export class ConstantCommon {
     public static API_READONE_MOMENT_REFUND_URL: string = "http://localhost:3000/api/refund/moment";
     public static API_UPDATE_REFUND_URL: string = "http://localhost:3000/api/refund";
 
-    public static API_REFUND_FILTER_URL: string = "http://localhost:3000/api/refund/filter";
+    public static API_REFUND_FILTER_URL: string = "http://localhost:3000/api/refund/filter"; 
 }

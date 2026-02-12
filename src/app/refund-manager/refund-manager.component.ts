@@ -176,7 +176,7 @@ export class RefundManagerComponent {
 
   public editValidate() {
     this.refundState.set(false);
-    let frDate = this.rmds.dateFormat(this.editForm.value.date);
+    let frDate = this.rms.dateFormat(this.editForm.value.date);
     this.editForm.value.date = frDate;
     let refundData = {...this.editForm.value, id: this.indexRefund()}
     this.rmr.updateRefund(refundData, this.refundData()._id).subscribe();

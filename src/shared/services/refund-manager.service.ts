@@ -15,7 +15,7 @@ export class RefundManagerService {
     private readonly api_read_refund_url: string = ConstantCommon.API_READ_REFUND_URL;
     private readonly api_readone_moment_refund_url: string = ConstantCommon.API_READONE_MOMENT_REFUND_URL;
     //private readonly api_update_refund_url: string = ConstantCommon.API_UPDATE_REFUND_URL;   
-    private readonly api_delete_refund_url: string = ConstantCommon.API_DELETE_REFUND_URL;   
+    private readonly api_delete_refund_url: string = ConstantCommon.API_DELETE_REFUND_URL;
 
     public refundDataList = signal<any>({})
     public date = new Date();
@@ -77,7 +77,7 @@ export class RefundManagerService {
             })
     }
 
-   
+
 
     public getAllRefund() {
         return this.httpClient.get<RefundManager>(this.api_read_refund_url, {
@@ -93,10 +93,24 @@ export class RefundManagerService {
 
     public setDate(date: any) {
         this.refundManagerList.update((up) => {
-           up.month = date.month
-           up.year = date.year
-           return up
+            up.month = date.month
+            up.year = date.year
+            return up
         })
+    }
+
+    public dateFormat(newdate: Date) {
+        console.log(newdate)
+        const date = new Date(newdate);
+        if (date.toString() !== 'Invalid Date' && newdate !== null) {
+
+            const day = date.getDate().toString().padStart(2, "0")
+            const month = (date.getMonth() + 1).toString().padStart(2, "0")
+            const year = date.getFullYear()
+            return day + '/' + month + '/' + year;
+        } else {
+            return ''
+        }
     }
 
     /*public refundUpdate(newRefunds: RefundManager) {
@@ -111,6 +125,6 @@ export class RefundManagerService {
        .subscribe();
     }*/
 
-   
+
 
 }
