@@ -1,5 +1,5 @@
 <div class="refund-filter-content">
-    <form [formGroup]="refundFilterForm">
+    <form [formGroup]="refundMomentForm">
         <mat-form-field>
             <mat-label>Mois</mat-label>
             <mat-select formControlName="month">
@@ -11,9 +11,15 @@
         <mat-form-field>
             <mat-label>Années</mat-label>
             <mat-select formControlName="year">
-                <mat-option value="one">First option</mat-option>
+                @for(yl of yearsList(); track yl) {
+                <mat-option [value]="yl"> {{ yl }}</mat-option>
+                }
             </mat-select>
         </mat-form-field>
+    </form>
+
+    <form [formGroup]="refundFilterForm">
+
         <mat-form-field>
             <mat-label>Libellé</mat-label>
             <input matInput formControlName="wording">
@@ -24,7 +30,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="dp" formControlName="date"/>
+            <input matInput [matDatepicker]="dp" formControlName="date" />
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp></mat-datepicker>

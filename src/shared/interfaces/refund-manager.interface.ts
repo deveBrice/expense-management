@@ -1,15 +1,13 @@
 export interface RefundManager {
+    _id?:number
     month: string;
     year: number;
     totalAmount: number;
-    refundManagerData: refundManagerData[]
+    refundList: refundList[]
 }
 
-export interface refundManagerData {
-    refundData: RefundData;
-}
-
-export interface RefundData {
+export interface refundList {
+    id?: number;
     wording: string;
     amount: number;
     date: string;

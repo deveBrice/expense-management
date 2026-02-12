@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewRefund } from './new-refund';
+import { AddRefundComponent } from './add-refund.component';
 
 describe('NewRefund', () => {
-  let component: NewRefund;
-  let fixture: ComponentFixture<NewRefund>;
+  let component: AddRefundComponent;
+  let fixture: ComponentFixture<AddRefundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewRefund]
+      imports: [AddRefundComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NewRefund);
+    fixture = TestBed.createComponent(AddRefundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

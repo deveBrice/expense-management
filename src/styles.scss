@@ -45,4 +45,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   td, th.mat-mdc-header-cell {
     text-align: center !important;
   }
+
+  .mat-mdc-form-field {
+    margin: 5px 0 5px 0;
+  }
+  .mat-mdc-form-field-subscript-wrapper {
+     display: none;
+   }
 }
+

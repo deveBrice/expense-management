@@ -1,12 +1,23 @@
 import { Injectable, signal } from "@angular/core";
 import { RefundManager } from '../../shared/interfaces/refund-manager.interface'
-import { refundManagerData } from "../../shared/interfaces/refund-manager.interface";
+import { refundList } from "../../shared/interfaces/refund-manager.interface";
+import { HttpClient } from "@angular/common/http";
+import { ConstantCommon } from "../common/constant.common";
+import { filter } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class RefundManagerService {
+
+    private readonly api_create_refund_url: string = ConstantCommon.API_CREATE_REFUND_URL;
+    private readonly api_read_refund_url: string = ConstantCommon.API_READ_REFUND_URL;
+    private readonly api_readone_moment_refund_url: string = ConstantCommon.API_READONE_MOMENT_REFUND_URL;
+    //private readonly api_update_refund_url: string = ConstantCommon.API_UPDATE_REFUND_URL;   
+    private readonly api_delete_refund_url: string = ConstantCommon.API_DELETE_REFUND_URL;   
+
+    public refundDataList = signal<any>({})
     public date = new Date();
 
     public monthsList: string[] = [
@@ -25,82 +36,14 @@ export class RefundManagerService {
     ]
 
     public refundManagerList = signal<RefundManager>({
-        month: 'Octobre',
-        year: 2025, //new Date().getFullYear()
+        month: this.currentMonth(),
+        year: new Date().getFullYear(),
         totalAmount: 0,
-        refundManagerData: [
-            {
-                refundData: {
-                    wording: 'Frais de paiement',
-                    amount: 3.40,
-                    date: '30/10/2025'
-                }
-            },
-            {
-                refundData: {
-                    wording: 'Frais de paiement',
-                    amount: 9.47,
-                    date: '30/10/2025'
-                }
-            },
-            {
-                refundData: {
-                    wording: 'Frais de paiement',
-                    amount: 9.37,
-                    date: '30/10/2025'
-                }
-            },
-            {
-                refundData: {
-                    wording: 'Frais de paiement',
-                    amount: 6.00,
-                    date: '30/10/2025'
-                }
-            },
-            {
-                refundData: {
-                    wording: 'Frais de paiement',
-                    amount: 4.00,
-                    date: '30/10/2025'
-                }
-            },
-            {
-                refundData: {
-                    wording: 'Uber Eats',
-                    amount: 4.00,
-                    date: '30/10/2025'
-                }
-            }
-        ]
+        refundList: []
     })
 
-    constructor() {
-    }
-
-    public getRefundList() {
-        let refundManagerList = this.refundManagerList()
-        if (refundManagerList.totalAmount === 0 && refundManagerList.refundManagerData.length !== 0) {
-            return this.refundCalculate(refundManagerList);
-        } else {
-            return refundManagerList 
-        }
-    }
-
-    public test() {
-        return this.refundManagerList()
-    }
-
-    public refundCalculate(refundManagerList: RefundManager) {
-        const initialValue = 0;
-        refundManagerList.totalAmount = refundManagerList.refundManagerData.reduce(
-            (accumulator: number, currentValue: any) => {
-
-                return accumulator + +currentValue.refundData.amount;
-            },
-            initialValue
-        );
-
-        return refundManagerList;
+    constructor(private httpClient: HttpClient) {
+        this.getAllRefund()
     }
 
     public currentMonth() {
@@ -108,21 +51,66 @@ export class RefundManagerService {
         return this.monthsList[+month - 1]
     }
 
-    public addNewRefund(refund: refundManagerData) {
-        this.refundManagerList().refundManagerData.push(refund);
-        this.refundCalculate(this.refundManagerList())
+    public getNewRefund(): RefundManager {
+        return this.refundManagerList()
     }
 
-    public refundUpdate(newRefund: number) {
-        this.refundManagerList().totalAmount = newRefund;
+    public refundCalculate(refundManagerList: RefundManager) {
+        const initialValue = 0;
+        refundManagerList.totalAmount = refundManagerList.refundList.reduce(
+            (accumulator: number, currentValue: any) => {
+
+                return accumulator + +currentValue.refundData.amount
+            },
+            initialValue
+        );
+
+        return refundManagerList;
     }
 
-    public dateFormat(newdate: Date) {
-        const date = new Date(newdate);
-        const day = date.getDate().toString().padStart(2, "0")
-        const month = (date.getMonth() + 1).toString().padStart(2, "0")
-        const year = date.getFullYear()
-        return day + '/' + month + '/' + year;
+    public createRefund(refundList: refundList) {
+        this.refundManagerList().refundList.push(refundList)
+        const refundManagerList = this.refundCalculate(this.refundManagerList())
+        return this.httpClient.post(this.api_create_refund_url, refundManagerList, { observe: 'body' })
+            .subscribe({
+                error: (err) => console.error("Le remboursement n'a pas été rajouté", err)
+            })
     }
+
+   
+
+    public getAllRefund() {
+        return this.httpClient.get<RefundManager>(this.api_read_refund_url, {
+            observe: 'body'
+        })
+    }
+
+    public getOneRefund(momentData: any) {
+        return this.httpClient.get(this.api_readone_moment_refund_url,
+            { params: { ...momentData } })
+
+    }
+
+    public setDate(date: any) {
+        this.refundManagerList.update((up) => {
+           up.month = date.month
+           up.year = date.year
+           return up
+        })
+    }
+
+    /*public refundUpdate(newRefunds: RefundManager) {
+      
+       this.httpClient.put(`${this.api_update_refund_url}/${newRefunds._id}`, newRefunds)
+       .subscribe();
+    }*/
+
+    /*public refundDelete(newRefunds: RefundManager) {
+      
+       this.httpClient.delete(`${this.api_update_refund_url}/${newRefunds._id}`)
+       .subscribe();
+    }*/
+
+   
 
 }

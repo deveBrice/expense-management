@@ -1,3 +1,14 @@
+.refund-manager-title {
+    h2 {
+        text-align: center;
+    }
+}
+
+.refund-manager {
+    display: flex;
+    justify-content: space-between;
+}
+
 .refund-amount {
     display: flex;
     justify-content: flex-end;
@@ -18,5 +29,25 @@
     align-items: center;
     button {
         margin-left: 10px;
+    }
+}
+
+.delete-icon {
+    mat-icon {
+        color: red;
+        cursor: pointer;
+    }
+}
+
+.edit-icon {
+   mat-icon {
+        color: green;
+        cursor: pointer;
+    } 
+}
+
+.no-data {
+    h2 {
+        text-align: center;
     }
 }
