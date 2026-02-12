@@ -1,11 +1,11 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RefundManagerService } from '../../../shared/services/refund-manager.service';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { RefundManagerDemoService } from '../../../shared/services/refund-manager.demo.service';
 
 @Component({
   selector: 'app-refund-filter',
@@ -25,57 +25,66 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 export class RefundFilterComponent {
 
   public fb = inject(FormBuilder);
-  public rms = inject(RefundManagerService)
+  public rms = inject(RefundManagerDemoService)
   public monthsList = signal<string[]>(this.rms.monthsList)
   public filtersListActive = signal<any>({})
+
+  public refundMoments = output<any>({})
+  public yearsList = signal<number[]>(
+    [
+      2025,
+      2026,
+      2027
+    ]
+  );
+
+
+
+  public refundMomentForm: FormGroup = this.fb.group({
+    month: [this.rms.currentMonth()],
+    year: [new Date().getFullYear()]
+  })
+
   public refundFiltersList = output<any>({})
 
   public refundFilterForm: FormGroup = this.fb.group({
-    month: [''],
-    year: [''],
     wording: [''],
     amount: [''],
     date: ['']
   })
 
   constructor() {
+    this.refundMoments.emit(this.refundMomentForm.value)
     this.refundFilterChange();
+    this.refundMomentChange()
   }
 
-  public refundFilterChange() {
-    this.refundFilterForm.valueChanges.subscribe((rdf: any) => {
-      this.addRefundFiltersList(rdf)
+  public refundMomentChange() {
+    this.refundMomentForm.valueChanges.subscribe((rmf: any) => {
+      this.refundMoments.emit(this.refundMomentForm.value)
     })
   }
 
-  public addRefundFiltersList(refundFiltersList: any) {
-    for (let rfl in refundFiltersList) {
-      if (refundFiltersList[rfl] !== "" && refundFiltersList[rfl] !== null) {
-        this.filtersListActive.update((up) => {
-          up[rfl] = refundFiltersList[rfl];
-          return up;
-        })
-      } else {
-        this.filtersListActive.update((up) => {
-          delete up[rfl];
-          return up;
-        })
-      }
-    }
-    this.dateFormat(this.filtersListActive().date);
-    this.refundFiltersList.emit(this.filtersListActive())
+  public refundFilterChange() {
+    this.refundFilterForm.valueChanges.subscribe((rfl: any) => {
+      const date = this.rms.dateFormat(rfl.date);
+      rfl.date = date
+      const activeFilter = this.activeFilter(rfl);
+      this.refundFiltersList.emit(activeFilter)
+    })
+  }
+
+  public activeFilter(obj: any) {
+    const filteredObj = Object.keys(obj).reduce((p: any, c) => {
+      if (obj[c]) p[c] = obj[c];
+      return p;
+    }, {});
+    console.log(filteredObj)
+    return filteredObj;
   }
 
 
-  public dateFormat(date: Date) {
-    if (date) {
-      const newDate = this.rms.dateFormat(date);
-      this.filtersListActive.update((up) => {
-        up.date = newDate;
-        return up;
-      })
-    }
-  }
+
 
 
 
