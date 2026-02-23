@@ -1,39 +1,51 @@
-<div class="refund-filter-content">
-    <form [formGroup]="refundMomentForm">
-        <mat-form-field>
-            <mat-label>Mois</mat-label>
-            <mat-select formControlName="month">
-                @for(ml of monthsList(); track ml) {
-                <mat-option [value]="ml">{{ ml }}</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Années</mat-label>
-            <mat-select formControlName="year">
-                @for(yl of yearsList(); track yl) {
-                <mat-option [value]="yl"> {{ yl }}</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
-    </form>
+<div class="refund-filter-container">
 
-    <form [formGroup]="refundFilterForm">
+    <div class="refund-filter-date-content">
+        <div class="refund-filter-title">
+            <h3>Filtrer les dates remboursements</h3>
+        </div>
+        <div class="refund-filter-date">
+            <form [formGroup]="refundMomentForm">
+                <mat-form-field>
+                    <mat-label>Mois</mat-label>
+                    <mat-select formControlName="month">
+                        @for(ml of monthsList(); track ml) {
+                        <mat-option [value]="ml">{{ ml }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Années</mat-label>
+                    <mat-select formControlName="year">
+                        @for(yl of yearsList(); track yl) {
+                        <mat-option [value]="yl"> {{ yl }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
 
-        <mat-form-field>
-            <mat-label>Libellé</mat-label>
-            <input matInput formControlName="wording">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Montant</mat-label>
-            <input matInput type="number" formControlName="amount">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="dp" formControlName="date" />
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp></mat-datepicker>
-        </mat-form-field>
-    </form>
+    <div class="refund-filter-content">
+        <div class="refund-filter-title">
+            <h3>Filtrer la liste des remboursements</h3>
+        </div>
+        <form [formGroup]="refundFilterForm">
+            <mat-form-field>
+                <mat-label>Libellé</mat-label>
+                <input matInput formControlName="wording">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Montant</mat-label>
+                <input matInput type="number" formControlName="amount">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="date" />
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </form>
+    </div>
 </div>

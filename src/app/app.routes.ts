@@ -11,11 +11,11 @@ export const routes: Routes = [
         loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent)
     },
     {
-        path: 'refundManager',
+        path: 'myRefund',
         loadComponent: () => import('./refund-manager/refund-manager.component').then(m => m.RefundManagerComponent)
     },
     {
-        path: 'expenseManager',
+        path: 'myExpenses',
         loadComponent: () => import('./expense-manager/expense-manager.component').then(m => m.ExpenseManagerComponent)
     },
 ];

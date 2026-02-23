@@ -1,8 +1,63 @@
 .side-nav-container {
-    height: 100vh
+    height: 100vh;
+  
+}
+
+
+.router-list {
+
+  mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    color: white;
+    margin: 0 10px 0 10px;
+  }
+
+  span {
+    
+    font-size: 14px;
+  }
+
+  a {
+    padding: 0;
+  }
+}
+
+
+
+.hidden-nav-element {
+  mat-icon {
+    padding-left: 10px;
+  }
+
+  span {  
+    display: none;
+  }
+}
+
+.sidenav-list {
+    background-color: #19244D;
+    border-radius: 0px;
+    transition: 250ms !important;
+    .router-list {
+      span {
+        color: white;
+      }
+
+      a{
+        background-color: #19244D;
+      }
+    }
+    
 }
 
 .content {
     padding: 24px;
-    height: calc(100% - 112px);
+    height: calc(100% - 98px);
+    background-color: #9495AC;
+}
+
+.toolbar {
+    height: 50px;
 }
