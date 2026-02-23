@@ -1,5 +1,21 @@
-.refund-filter-content {
+.refund-filter-container {
+    display: flex;
+    margin-top: 20px;
     mat-form-field {
         margin-right: 10px;
     }
+
+    .refund-filter-title, .refund-filter-title {
+        h3 {
+            color: #19244D;
+            font-weight: 500;
+        }
+    }
+
+   .refund-filter-content {
+     margin-left: 20px;   
+   }
 }
+
+
+

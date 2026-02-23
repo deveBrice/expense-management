@@ -1,20 +1,32 @@
 .refund-manager-title {
-    h2 {
+    h1 {
+        font-size: 32px;
+        margin-top: 30px;
         text-align: center;
+        color: #19244D;
     }
 }
 
 .refund-manager {
     display: flex;
     justify-content: space-between;
+    .refund-filter-content {
+        .refund-filter-title {
+            h2 {
+                font-size: 18px;
+                color: #19244D
+            }
+        } 
+    }
+    
 }
 
 .refund-amount {
     display: flex;
     justify-content: flex-end;
     text-align: right;
-    p{
-        font-size: 20px
+    p {
+        font-size: 20px;
     }
 }
 
@@ -30,6 +42,14 @@
     button {
         margin-left: 10px;
     }
+}
+
+.refund-manager-table {
+  background-color: #9495AC;
+  th {
+    color: #19244D;
+    font-weight: semi-bold;
+  }
 }
 
 .delete-icon {
@@ -50,4 +70,8 @@
     h2 {
         text-align: center;
     }
+}
+
+.paginator {
+    background-color: #9495AC;
 }

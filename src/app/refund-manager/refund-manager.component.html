@@ -1,11 +1,13 @@
 <div class="refund-manger-content">
   <div class="refund-manager-title">
-    <h2>Gestion des remboursements</h2>
+    <h1>Gestion des remboursements</h1>
   </div>
 
   <div class="refund-manager">
     <div class="refund-manager-fields">
+
       <app-refund-filter (refundFiltersList)="refundFiltersList($event)" (refundMoments)="refundMoments($event)" />
+
       <app-add-refund (newRefund)="newRefund($event)" />
     </div>
     <div class="new-refund-button">
@@ -114,12 +116,12 @@
             <mat-icon>edit</mat-icon>
           </button>
           } @else if(element.id === indexRefund()) {
- 
+
           <button matMiniFab (click)="editValidate()">
             <mat-icon>check_small</mat-icon>
           </button>
-          
-        }
+
+          }
         </div>
       </td>
     </ng-container>
@@ -132,5 +134,6 @@
     <h2>Pas de données</h2>
   </div>
   }
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of GitHub search results"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of GitHub search results"
+    class="paginator"></mat-paginator>
 </div>

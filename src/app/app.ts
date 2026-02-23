@@ -22,6 +22,7 @@ export type MenuItem = {
             RouterOutlet, 
             RouterModule,
             FormsModule,
+            CommonModule,
             ReactiveFormsModule,
             MatButtonModule,
             MatSidenavModule, 
@@ -43,13 +44,13 @@ export class App {
       icon: 'dashboard'
     },
     {
-      label: 'Gestion des remboursements',
-      path: 'refundManager',
+      label: 'Mes remboursements',
+      path: 'myRefund',
       icon: ''
     },
     {
-      label: 'Gestion des dépenses',
-      path: 'expenseManager',
+      label: 'Mes dépenses',
+      path: 'myExpenses',
       icon: ''
     }
   ])

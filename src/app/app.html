@@ -1,6 +1,6 @@
 <mat-sidenav-container class="side-nav-container">
-  <mat-sidenav opened #sidenav mode="side" [style.width]="sinavresize()">
-    <div class="router-list">
+  <mat-sidenav opened #sidenav mode="side" [style.width]="sinavresize()" class="sidenav-list">
+    <div class="router-list" [ngClass]="{'hidden-nav-element': collapsed()}">
       <mat-nav-list>
         @for(rl of routersList(); track rl) {
         <a mat-list-item [routerLink]="rl.path" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive">
@@ -15,7 +15,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content [style.margin-left]="sinavresize()">
-    <mat-toolbar>
+    <mat-toolbar class="toolbar">
       <button matIconButton class="example-icon" (click)="sidenavState(sidenav)">
         <mat-icon>menu</mat-icon>
       </button>
