@@ -57,9 +57,8 @@ export class App {
 
   public sinavresize = computed(() => this.collapsed() ? '65px' : '250px')
 
-  public sidenavState(sidenav: MatSidenav) {
-   //  sidenav.toggle()
-    console.log(sidenav)
+  public sidenavState() {
+
      this.collapsed.set(!this.collapsed())
   }
 }

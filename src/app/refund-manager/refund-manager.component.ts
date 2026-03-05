@@ -129,7 +129,7 @@ export class RefundManagerComponent {
   }
 
   public deleteRefund(index: number) {
-    const refundList = this.refundData().refundList[index]
+    const refundList = this.refundData().refundList[index];
     this.rmr.deleteRefund(this.refundData()._id, refundList).subscribe()
     this.rmr.reloadRefund();
   }
